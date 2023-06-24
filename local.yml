@@ -5,12 +5,11 @@
   become: true
 
 
-  tasks:
-    - name: install packages
+  pre_tasks:
+    - name: update repositories
       apt:
-        name:
-          - mc
-          - python3-psutil
-          - vim-nox
-          - htop
-          - tmux
+        update_cache: yes
+      changed_when: false
+
+  tasks:
+    - include: tasks/packages.yml
